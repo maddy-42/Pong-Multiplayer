@@ -54,7 +54,52 @@ def handle_paddle_move(keys, left_paddle, right_paddle):
         right_paddle.move(up = True)
     if keys[pygame.K_DOWN] and right_paddle.y + right_paddle.VEL + right_paddle.height <= HEIGHT:
         right_paddle.move(up = False)
+class Ball:
+    MAX_VEL = 5
+    COLOR = WHITE
 
+    def __init__(self, x, y, radius):
+        self.x = self.original_x = x
+        self.y = self.original_y = y
+        self.radius = radius
+        self.x_vel = self.MAX_VEL
+        self.y_vel = 0
+
+    def draw(self, win):
+        pygame.draw.circle(win, self.COLOR, (self.x, self.y), self.radius)
+
+    def move(self):
+        self.x += self.x_vel
+        self.y += self.y_vel
+
+    def reset(self):
+        self.x = self.original_x
+        self.y = self.original_y
+        self.y_vel = 0
+        self.x_vel *= -1
+
+
+def draw(win, paddles, ball, left_score, right_score):
+    win.fill(BLACK)
+
+    left_score_text = SCORE_FONT.render(f"{left_score}", 1, WHITE)
+    right_score_text = SCORE_FONT.render(f"{right_score}", 1, WHITE)
+    win.blit(left_score_text, (WIDTH//4 - left_score_text.get_width()//2, 20))
+    win.blit(right_score_text, (WIDTH * (3/4) -
+                                right_score_text.get_width()//2, 20))
+
+    for paddle in paddles:
+        paddle.draw(win)
+
+    for i in range(10, HEIGHT, HEIGHT//20):
+        if i % 2 == 1:
+            continue
+        pygame.draw.rect(win, WHITE, (WIDTH//2 - 5, i, 10, HEIGHT//20))
+
+    ball.draw(win)
+    pygame.display.update()
+    
+    
 def main():
     run = True
     clock = pygame.time.Clock()
