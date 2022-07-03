@@ -20,7 +20,7 @@ WINNING_SCORE = 15
 
 
 class Paddle:
-    COLOUR = WHITE
+    COLOR = WHITE
     VEL = 4
 
     def __init__(self, x, y, width, height):
