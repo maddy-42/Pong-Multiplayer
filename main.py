@@ -93,7 +93,7 @@ def draw(win, paddles, ball, left_score, right_score):
     pygame.display.update()
 
 
-def handle_collision(ball, left_paddle, right_paddle): 
+def handle_collision(ball, left_paddle, right_paddle): # governing the collision of the ball
     if ball.y + ball.radius >= HEIGHT:
         ball.y_vel *= -1
 
@@ -127,7 +127,7 @@ def handle_collision(ball, left_paddle, right_paddle):
                 ball.y_vel = -1 * y_vel
 
 
-def handle_paddle_movement(keys, left_paddle, right_paddle):
+def handle_paddle_movement(keys, left_paddle, right_paddle): #integrating keys to move paddles
     
     if keys[pygame.K_w] and left_paddle.y - left_paddle.VEL >= 0:
         left_paddle.move(up=True)
