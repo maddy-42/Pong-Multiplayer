@@ -16,7 +16,7 @@ PADDLE_WIDTH, PADDLE_HEIGHT = 20, 100
 BALL_RADIUS = 7
 
 SCORE_FONT = pygame.font.SysFont("comicsans", 50)
-WINNING_SCORE = 5
+WINNING_SCORE = 15
 
 
 class Paddle:
@@ -33,7 +33,7 @@ class Paddle:
         pygame.draw.rect(
             win, self.COLOR, (self.x, self.y, self.width, self.height))
 
-    def move(self, up=True):
+    def move(self, up=True): 
         if up:
             self.y -= self.VEL
         else:
@@ -44,7 +44,7 @@ class Paddle:
         self.y = self.original_y
 
 
-class Ball:
+class Ball: #creating the ball
     MAX_VEL = 5
     COLOR = WHITE
 
@@ -93,7 +93,7 @@ def draw(win, paddles, ball, left_score, right_score):
     pygame.display.update()
 
 
-def handle_collision(ball, left_paddle, right_paddle):
+def handle_collision(ball, left_paddle, right_paddle): 
     if ball.y + ball.radius >= HEIGHT:
         ball.y_vel *= -1
 
